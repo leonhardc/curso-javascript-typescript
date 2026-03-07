@@ -1,2 +1,2 @@
-# curso-javascript-typescript
-Curso de JavaScript e TypeScript com NodeJs
+# Curso JavaScript/TypeScript
+Curso de JavaScript e TypeScript com NodeJs da Udemy
