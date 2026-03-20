@@ -1,0 +1,50 @@
+<!-- Solucao da IA - GitHub Copilot -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Validador de CPF</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <main class="page">
+        <section class="cpf-card" aria-labelledby="title-cpf">
+            <p class="eyebrow">Documento brasileiro</p>
+            <h1 id="title-cpf">Validador de CPF</h1>
+            <p class="subtitle">
+                Digite um CPF e clique em validar para conferir os digitos
+                verificadores do documento.
+            </p>
+
+            <form id="cpf-form" class="cpf-form" action="#" method="post" novalidate>
+                <label for="cpf-input">CPF</label>
+                <div class="input-row">
+                    <input
+                        type="text"
+                        id="cpf-input"
+                        name="cpf"
+                        placeholder="000.000.000-00"
+                        maxlength="14"
+                        inputmode="numeric"
+                        autocomplete="off"
+                    >
+                    <button type="submit">Validar</button>
+                </div>
+            </form>
+
+            <section class="status-panel is-idle" id="status-panel" aria-live="polite" aria-atomic="true">
+                <h2 id="status-title">Status da validacao</h2>
+                <p id="status-message">Aguardando um CPF para iniciar a verificacao.</p>
+            </section>
+
+            <ul class="tips">
+                <li>Aceita numeros puros ou no formato com pontos e traco.</li>
+                <li>A validacao considera tamanho, repeticao e digitos verificadores.</li>
+            </ul>
+        </section>
+    </main>
+    <script src="./scripts.js"></script>
+</body>
+</html>
