@@ -1,0 +1,23 @@
+{
+  "name": "aula-116---webpack-(boilerplate)",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "gera": "webpack -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@babel/cli": "^7.28.6",
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.2",
+    "babel-loader": "^10.1.1",
+    "core-js": "^2.6.12",
+    "regenerator-runtime": "^0.14.1",
+    "webpack": "^5.105.4",
+    "webpack-cli": "^7.0.2"
+  }
+}
