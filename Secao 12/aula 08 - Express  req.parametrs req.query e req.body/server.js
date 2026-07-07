@@ -1,8 +1,6 @@
 const espress = require('express');
 const app = espress();
 
-// Middleware para fazer parse de dados enviados no corpo da requisição em formato URL-encoded (formulários HTML)
-// extended: true permite parsing de dados complexos e arrays
 app.use(
 express.encode.urlencoded({ extended: true })
 )
