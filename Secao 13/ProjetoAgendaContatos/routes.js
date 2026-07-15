@@ -1,8 +1,7 @@
 const express = require('express');
 const route = express.Router();
 const homeController = require('./src/controllers/homeController');
-const contatoController = require('./src/controllers/contatoController');
-
+const loginController = require('./src/controllers/loginController');
 // middleware global
 // function meuMiddleware(req, res, next) {
 //     req.session = { nome: 'Leonardo' };
@@ -13,11 +12,12 @@ const contatoController = require('./src/controllers/contatoController');
 // }
 
 // rotas da home
-route.get('/', homeController.paginaInicial); // ainda é possível passar o middleware como segundo parâmetro, mas o ideal é usar app.use() para definir middlewares globais
-// route.get('/', meuMiddleware, homeController.paginaInicial); // ainda é possível passar o middleware como segundo parâmetro, mas o ideal é usar app.use() para definir middlewares globais
-route.post('/', homeController.trataPost);
+route.get('/', homeController.index); // ainda é possível passar o middleware como segundo parâmetro, mas o ideal é usar app.use() para definir middlewares globais
 
-// rotas de contato
-route.get('/contato', contatoController.paginaContato);
+// rotas de login
+route.get('/login/index', loginController.index);
+route.post('/login/register', loginController.register);
+route.post('/login/login', loginController.login);
+route.get('/login/logout', loginController.logout);
 
 module.exports = route;
