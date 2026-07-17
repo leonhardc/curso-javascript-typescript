@@ -1,3 +1,11 @@
+function middlewareGlobal(req, res, next) {
+    res.locals.errors = req.flash('errors');
+    res.locals.success = req.flash('success');
+    res.locals.user = req.session.user;
+    next();
+};
+
+
 function meuMiddleware(req, res, next) {
     if (req.body.cliente) {
         console.log(`O nome do cliente é: ${req.body.cliente}`);
@@ -18,6 +26,7 @@ function csrfMiddleware(req, res, next) {
 }
 
 module.exports = {
+    middlewareGlobal,
     meuMiddleware,
     checkCsrfError,
     csrfMiddleware

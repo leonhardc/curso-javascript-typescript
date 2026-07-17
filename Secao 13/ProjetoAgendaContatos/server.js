@@ -19,7 +19,7 @@ const flash = require('connect-flash');
 const routes = require('./routes');
 const path = require('path');
 const helmet = require('helmet');
-const {meuMiddleware, checkCsrfError, csrfMiddleware } = require('./src/middlewares/middleware');
+const { middlewareGlobal, checkCsrfError, csrfMiddleware } = require('./src/middlewares/middleware');
 const csrf = require('csurf');
 const sessionSecret = process.env.SECRET || 'troque-esta-chave-em-producao';
 
@@ -45,6 +45,7 @@ app.set('view engine', 'ejs');
 app.use(sessionOptions);
 app.use(flash());
 app.use(csrf());
+app.use(middlewareGlobal);
 app.use(checkCsrfError);
 app.use(csrfMiddleware);
 app.use(routes);

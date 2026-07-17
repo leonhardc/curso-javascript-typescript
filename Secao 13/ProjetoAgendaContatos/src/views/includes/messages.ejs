@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col my-3">
+        <% if (errors && errors.length > 0) { %>
+            <div class="alert alert-danger" role="alert">
+                    <% errors.forEach(function(error) { %>
+                        <%= error %><br>
+                    <% }); %>
+            </div>
+        <% } %>
+
+        <% if (success && success.length > 0) { %>
+            <div class="alert alert-success" role="alert">
+                    <% success.forEach(function(message) { %>
+                        <%= message %><br>
+                    <% }); %>
+            </div>
+        <% } %>
+    </div>
+</div>
