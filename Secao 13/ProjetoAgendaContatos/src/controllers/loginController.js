@@ -5,6 +5,7 @@ exports.index = (req, res) => {
 }
 
 exports.register = async (req, res) => {
+    console.log(req.body)
     try {
         const login = new Login(req.body)
         await login.register()
@@ -18,7 +19,8 @@ exports.register = async (req, res) => {
         return req.session.save(() => res.redirect('/login/index'))
     } catch (e) {
         console.log(e)
-        return res.render('404')
+        // return res.render('404')
+        return res.render('login', { errors: ['Erro interno. Tente novamente mais tarde.'] })
     }
 
 }

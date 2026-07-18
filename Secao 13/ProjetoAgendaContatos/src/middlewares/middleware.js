@@ -14,6 +14,7 @@ function meuMiddleware(req, res, next) {
 }
 
 function checkCsrfError(err, req, res, next) {
+    console.log('checkCsrfError', err);
     if (err && err.code === 'EBADCSRFTOKEN') {
         return res.render('404');
     }
