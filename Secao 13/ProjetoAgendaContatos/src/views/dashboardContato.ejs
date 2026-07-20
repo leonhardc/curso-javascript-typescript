@@ -1,0 +1,55 @@
+<%- include('includes/head') %> <%- include('includes/nav') %>
+
+<div class="container">
+	<%- include('includes/messages') %>
+
+	<div class="row">
+		<div class="col-lg-1"></div>
+
+		<div class="col-lg-10 my-5">
+			<div class="d-flex justify-content-between align-items-center mb-3">
+				<div>
+					<h1 class="mb-0">Meus Contatos</h1>
+					<p class="lead mb-0">Gerencie os contatos da sua agenda.</p>
+				</div>
+				<div class="d-flex align-items-center gap-2">
+					<span class="badge text-bg-dark fs-6"><%= contatos.length %> contato(s)</span>
+					<a href="/contato/index" class="btn btn-success btn-sm">Novo contato</a>
+				</div>
+			</div>
+
+			<div class="responsive-table">
+				<table class="table table-striped table-hover my-3 align-middle">
+					<thead class="table-dark">
+						<tr>
+							<th scope="col">Nome</th>
+							<th scope="col">Sobrenome</th>
+							<th scope="col">Telefone</th>
+							<th scope="col">E-mail</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% if (contatos.length === 0) { %>
+							<tr>
+								<td colspan="4" class="text-center py-4">Nenhum contato cadastrado ainda.</td>
+							</tr>
+						<% } %>
+
+						<% contatos.forEach(function(contato) { %>
+							<tr>
+								<td><%= contato.nome || '-' %></td>
+								<td><%= contato.sobrenome || '-' %></td>
+								<td><%= contato.telefone || '-' %></td>
+								<td><%= contato.email || '-' %></td>
+							</tr>
+						<% }); %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="col-lg-1"></div>
+	</div>
+</div>
+
+<%- include('includes/footer') %>
