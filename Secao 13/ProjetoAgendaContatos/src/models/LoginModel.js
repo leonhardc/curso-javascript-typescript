@@ -17,41 +17,72 @@ class Login {
         this.user = null;
     }
 
+    async login() {
+        this.valida();
+        if (this.errors.length > 0) return;
+        this.user = await LoginModel.findOne({ email: this.body.email });
+        if (!this.user) {
+            this.errors.push('Usuário não existe.');
+            return;
+        }
+        if (!bcryptjs.compareSync(this.body.password, this.user.password)) {
+            this.errors.push('Senha inválida.');
+            this.user = null;
+            return;
+        }
+    }
+
     async register() {
         this.valida();
         if (this.errors.length > 0) return;
         await this.userExists();
         if (this.errors.length > 0) return;
 
-        try {
-            const salt = await bcryptjs.genSalt(10);
-            this.body.password = await bcryptjs.hash(this.body.password, salt);
-            this.user = await LoginModel.create(this.body);
-        }
-        catch (e) {
-            this.errors.push('Erro interno ao salvar usuário. Tente novamente.');
-            console.log(e);
-        }
+        const salt = await bcryptjs.genSalt(10);
+        this.body.password = await bcryptjs.hash(this.body.password, salt);
+        this.user = await LoginModel.create(this.body);
+
     }
 
     async userExists() {
-        const user = await LoginModel.findOne({ email: this.body.email });
-        if (user) this.errors.push('Usuário já existe.');
+        this.user = await LoginModel.findOne({ email: this.body.email });
+        if (this.user) this.errors.push('Usuário já existe.');
+    }
+
+    validaLogin() {
+        this.cleanUp();
+        // Validação de dados
+        try {
+            // O email precisa ser válido
+            if (!this.body.email || !validator.isEmail(this.body.email)) {
+                this.errors.push('E-mail inválido.');
+            }
+            // A senha precisa ter entre 3 e 50 caracteres
+            if (this.body.password.length < 3 || this.body.password.length > 50) {
+                this.errors.push('A senha precisa ter entre 3 e 50 caracteres.');
+            }
+        } catch (e) {
+            this.errors.push('Erro ao validar os dados.');
+        }
     }
 
     valida() {
         this.cleanUp();
         // Validação de dados
-        if (this.body.nome.length < 3 || this.body.nome.length > 50) {
-            this.errors.push('O nome precisa ter entre 3 e 50 caracteres.');
-        }
-        // O email precisa ser válido
-        if (!this.body.email || !validator.isEmail(this.body.email)) {
-            this.errors.push('E-mail inválido.');
-        }
-        // A senha precisa ter entre 3 e 50 caracteres
-        if (this.body.password.length < 3 || this.body.password.length > 50) {
-            this.errors.push('A senha precisa ter entre 3 e 50 caracteres.');
+        try {
+            if (this.body.nome.length < 3 || this.body.nome.length > 50) {
+                this.errors.push('O nome precisa ter entre 3 e 50 caracteres.');
+            }
+            // O email precisa ser válido
+            if (!this.body.email || !validator.isEmail(this.body.email)) {
+                this.errors.push('E-mail inválido.');
+            }
+            // A senha precisa ter entre 3 e 50 caracteres
+            if (this.body.password.length < 3 || this.body.password.length > 50) {
+                this.errors.push('A senha precisa ter entre 3 e 50 caracteres.');
+            }
+        } catch (e) {
+            this.validaLogin();
         }
     }
 
