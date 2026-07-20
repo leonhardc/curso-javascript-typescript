@@ -26,9 +26,19 @@ function csrfMiddleware(req, res, next) {
     next();
 }
 
+function loginRequired(req, res, next) {
+    if (!req.session.user) {
+        req.flash('errors', 'Você precisa fazer login para acessar essa página.');
+        req.session.save(() => res.redirect('/login/index'));
+        return;
+    }
+    next();
+}
+
 module.exports = {
     middlewareGlobal,
     meuMiddleware,
     checkCsrfError,
-    csrfMiddleware
+    csrfMiddleware,
+    loginRequired
 };
