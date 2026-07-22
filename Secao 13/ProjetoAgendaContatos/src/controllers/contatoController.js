@@ -35,9 +35,29 @@ exports.register = async (req, res) => {
         }
 
         req.flash('success', 'Contato registrado com sucesso.');
-        req.session.save(() => res.redirect(`/contato/index`));
+        req.session.save(() => res.redirect(`/contato/index/${contato.contato._id}`));
     } catch (e) {
         console.log(e);
         res.render('404');
     }
 }
+
+exports.editIndex = async (req, res) => {
+    if (!req.session.user) {
+        req.flash('errors', 'Você precisa fazer login para acessar os contatos.');
+        return req.session.save(() => res.redirect('/login/index'));
+    }
+
+    try {
+        const contato = await new Contato({}).buscaPorId(req.params.id);
+
+        if (!contato) {
+            return res.render('404');
+        }
+
+        res.render('editarContato', { contato });
+    } catch (e) {
+        console.log(e);
+        res.render('404');
+    }
+}   
