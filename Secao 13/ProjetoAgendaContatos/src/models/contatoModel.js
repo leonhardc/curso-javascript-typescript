@@ -31,6 +31,12 @@ class Contato {
         this.contato = await ContatoModel.findByIdAndUpdate(id, this.body, { new: true });
     }
 
+    async buscaContatos() {
+        const contatos = await ContatoModel.find()
+            .sort({ criadoEm: -1 });
+        return contatos;
+    }
+
     async buscaPorId(id) {
         if (typeof id !== 'string') return;
         return await ContatoModel.findById(id);

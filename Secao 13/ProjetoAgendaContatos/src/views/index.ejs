@@ -1,27 +1,90 @@
 <%- include('includes/head') %> <%- include('includes/nav') %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-2"></div>
+<div class="container-fluid">
+  <div class="row mb-4">
+    <div class="col-12">
+      <h1 class="display-4">Dashboard - Agenda de Contatos</h1>
+      <p class="lead text-muted">Bem-vindo à sua agenda de contatos. Gerencie seus contatos com facilidade.</p>
+    </div>
+  </div>
 
-    <div class="col-lg-8 my-5">
-      <h1 class="text-center">Agenda</h1>
-      <p class="text-center lead">Bem-vindo à sua agenda de contatos.</p>
+  <%- include('includes/messages') %>
 
-      <%- include('includes/messages') %>
-
-      <div class="responsive-table">
-        <table class="table my-3">
-          <tr>
-            <td>Leonardo</td>
-            <td>Rodrigues</td>
-            <td>23342343434</td>
-            <td>email@email.com</td>
-          </tr>
-        </table>
+  <!-- Cards Informativos -->
+  <div class="row mb-5">
+    <div class="col-md-3 mb-3">
+      <div class="card border-primary">
+        <div class="card-body">
+          <h5 class="card-title">Total de Contatos</h5>
+          <p class="card-text display-6">1</p>
+          <small class="text-muted">Contatos cadastrados</small>
+        </div>
       </div>
     </div>
-    <div class="col-lg-2"></div>
+    <div class="col-md-3 mb-3">
+      <div class="card border-success">
+        <div class="card-body">
+          <h5 class="card-title">Novos Contatos</h5>
+          <p class="card-text display-6">0</p>
+          <small class="text-muted">Últimos 7 dias</small>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <div class="card border-info">
+        <div class="card-body">
+          <h5 class="card-title">Com Email</h5>
+          <p class="card-text display-6">1</p>
+          <small class="text-muted">Contatos com email</small>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <div class="card border-warning">
+        <div class="card-body">
+          <h5 class="card-title">Ações Rápidas</h5>
+          <a href="/contato/criar" class="btn btn-sm btn-primary">Novo Contato</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabela de Contatos -->
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header bg-dark text-white">
+          <h5 class="mb-0">Seus Contatos</h5>
+        </div>
+        <div class="card-body">
+          <div class="responsive-table">
+            <table class="table table-hover mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>Nome</th>
+                  <th>Sobrenome</th>
+                  <th>Telefone</th>
+                  <th>Email</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Leonardo</td>
+                  <td>Rodrigues</td>
+                  <td>23342343434</td>
+                  <td>email@email.com</td>
+                  <td>
+                    <a href="#" class="btn btn-sm btn-info">Editar</a>
+                    <a href="#" class="btn btn-sm btn-danger">Deletar</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

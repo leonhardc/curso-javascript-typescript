@@ -1,12 +1,14 @@
 const Contato = require('../models/contatoModel');
 
-exports.index = (req, res) => {
+exports.index = async(req, res) => {
     if (!req.session.user) {
         req.flash('errors', 'Você precisa fazer login para acessar os contatos.');
         return req.session.save(() => res.redirect('/login/index'));
     }
+    const contato = new Contato(req.body);
+    const contatos = await contato.buscaContatos();
 
-    res.render('dashboardContato', { contatos: [] });
+    res.render('dashboardContato', { contatos });
 }
 
 exports.novoContato = (req, res) => {
@@ -60,7 +62,7 @@ exports.editIndex = async (req, res) => {
         console.log(e);
         res.render('404');
     }
-} 
+}
 
 exports.editContato = async (req, res) => {
     if (!req.session.user) {
