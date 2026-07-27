@@ -26,6 +26,7 @@ route.get('/login/logout', loginController.logout);
 route.get('/contato/index', contatoController.index);
 route.get('/contato/index/:id', contatoController.editIndex);
 route.post('/contato/edit/:id', contatoController.editContato);
+route.get('/contato/deletar/:id', loginRequired, contatoController.deletarContato);
 route.get('/contato/novoContato', loginRequired, contatoController.novoContato);
 route.post('/contato/register', loginRequired, contatoController.register);
 

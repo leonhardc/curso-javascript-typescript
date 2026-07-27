@@ -1,89 +1,112 @@
 <%- include('includes/head') %> <%- include('includes/nav') %>
 
 <div class="container-fluid">
-  <div class="row mb-4">
-    <div class="col-12">
-      <h1 class="display-4">Dashboard - Agenda de Contatos</h1>
-      <p class="lead text-muted">Bem-vindo à sua agenda de contatos. Gerencie seus contatos com facilidade.</p>
+  <!-- Hero Section -->
+  <div
+    class="row mb-5 py-5"
+    style="
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 10px;
+    "
+  >
+    <div class="col-12 col-md-6 d-flex flex-column justify-content-center">
+      <h1 class="display-3 fw-bold mb-4">Sua Agenda de Contatos</h1>
+      <p class="lead mb-4">
+        Organize, gerencie e mantenha contato com as pessoas que importam.
+        Simples, rápido e eficiente.
+      </p>
+      <div>
+        <a href="/contato/criar" class="btn btn-light btn-lg me-3 fw-bold"
+          >Criar Novo Contato</a
+        >
+        <a href="#features" class="btn btn-outline-light btn-lg fw-bold"
+          >Saiba Mais</a
+        >
+      </div>
+    </div>
+    <div
+      class="col-12 col-md-6 d-flex align-items-center justify-content-center"
+    >
+      <div style="font-size: 100px; opacity: 0.2">📇</div>
     </div>
   </div>
 
   <%- include('includes/messages') %>
 
-  <!-- Cards Informativos -->
-  <div class="row mb-5">
-    <div class="col-md-3 mb-3">
-      <div class="card border-primary">
-        <div class="card-body">
-          <h5 class="card-title">Total de Contatos</h5>
-          <p class="card-text display-6">1</p>
-          <small class="text-muted">Contatos cadastrados</small>
+  <!-- Features Section -->
+  <div class="row mb-5" id="features">
+    <div class="col-12">
+      <h2 class="text-center mb-5 fw-bold">Por que usar nossa agenda?</h2>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body text-center">
+          <div style="font-size: 48px; margin-bottom: 20px">👥</div>
+          <h5 class="card-title fw-bold">Fácil Gerenciamento</h5>
+          <p class="card-text">
+            Adicione, edite e organize seus contatos com facilidade. Interface
+            intuitiva e amigável.
+          </p>
         </div>
       </div>
     </div>
-    <div class="col-md-3 mb-3">
-      <div class="card border-success">
-        <div class="card-body">
-          <h5 class="card-title">Novos Contatos</h5>
-          <p class="card-text display-6">0</p>
-          <small class="text-muted">Últimos 7 dias</small>
+    <div class="col-md-4 mb-3">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body text-center">
+          <div style="font-size: 48px; margin-bottom: 20px">⚡</div>
+          <h5 class="card-title fw-bold">Rápido e Prático</h5>
+          <p class="card-text">
+            Acesse seus contatos em segundos. Busca e filtros potentes para
+            encontrar exatamente o que precisa.
+          </p>
         </div>
       </div>
     </div>
-    <div class="col-md-3 mb-3">
-      <div class="card border-info">
-        <div class="card-body">
-          <h5 class="card-title">Com Email</h5>
-          <p class="card-text display-6">1</p>
-          <small class="text-muted">Contatos com email</small>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3 mb-3">
-      <div class="card border-warning">
-        <div class="card-body">
-          <h5 class="card-title">Ações Rápidas</h5>
-          <a href="/contato/criar" class="btn btn-sm btn-primary">Novo Contato</a>
+    <div class="col-md-4 mb-3">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body text-center">
+          <div style="font-size: 48px; margin-bottom: 20px">🔒</div>
+          <h5 class="card-title fw-bold">Seguro e Confiável</h5>
+          <p class="card-text">
+            Seus dados são armazenados com segurança. Controle total sobre suas
+            informações pessoais.
+          </p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Tabela de Contatos -->
-  <div class="row">
+  <!-- Stats Section -->
+  <div class="row mb-5 py-4 bg-light rounded">
+    <div class="col-md-3 mb-3 text-center">
+      <h3 class="display-5 fw-bold text-primary">0</h3>
+      <p class="text-muted">Contatos cadastrados</p>
+    </div>
+    <div class="col-md-3 mb-3 text-center">
+      <h3 class="display-5 fw-bold text-success">0</h3>
+      <p class="text-muted">Novos esta semana</p>
+    </div>
+    <div class="col-md-3 mb-3 text-center">
+      <h3 class="display-5 fw-bold text-info">0</h3>
+      <p class="text-muted">Contatos com email</p>
+    </div>
+    <div class="col-md-3 mb-3 text-center">
+      <h3 class="display-5 fw-bold text-warning">100%</h3>
+      <p class="text-muted">Taxa de utilização</p>
+    </div>
+  </div>
+
+  <!-- CTA Section -->
+  <div class="row mb-5 py-5 bg-dark text-white rounded text-center">
     <div class="col-12">
-      <div class="card">
-        <div class="card-header bg-dark text-white">
-          <h5 class="mb-0">Seus Contatos</h5>
-        </div>
-        <div class="card-body">
-          <div class="responsive-table">
-            <table class="table table-hover mb-0">
-              <thead class="table-light">
-                <tr>
-                  <th>Nome</th>
-                  <th>Sobrenome</th>
-                  <th>Telefone</th>
-                  <th>Email</th>
-                  <th>Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Leonardo</td>
-                  <td>Rodrigues</td>
-                  <td>23342343434</td>
-                  <td>email@email.com</td>
-                  <td>
-                    <a href="#" class="btn btn-sm btn-info">Editar</a>
-                    <a href="#" class="btn btn-sm btn-danger">Deletar</a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+      <h2 class="mb-4 fw-bold">Comece Agora Mesmo!</h2>
+      <p class="lead mb-4">
+        Organize seus contatos e nunca perca a conexão com ninguém.
+      </p>
+      <a href="/contato/criar" class="btn btn-primary btn-lg fw-bold"
+        >Criar Primeiro Contato</a
+      >
     </div>
   </div>
 </div>

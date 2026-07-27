@@ -1,7 +1,11 @@
 const Login = require('../models/LoginModel')
+const Contato = require('../models/contatoModel')
 
-exports.index = (req, res) => {
-    if(req.session.user) return res.render('dashboard')
+exports.index = async (req, res) => {
+    if (req.session.user) {
+        const contatos = await new Contato(req.body).buscaContatos()
+        return res.render('dashboard', { contatos })
+    }
     res.render('login')
 }
 

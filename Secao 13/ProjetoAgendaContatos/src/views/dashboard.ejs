@@ -1,14 +1,100 @@
 <%- include('includes/head') %> <%- include('includes/nav') %>
 
-<div class="container">
-  <%- include('includes/messages') %>
-  <div class="row">
-    <div class="col-lg-2"></div>
-    <div class="col-lg-8">
-      <h1 class="text-center">Dashboard</h1>
+<div class="container-fluid">
+  <div class="row mb-4">
+    <div class="col-12">
+      <h1 class="display-4">Dashboard - Agenda de Contatos</h1>
+      <p class="lead text-muted">Bem-vindo à sua agenda de contatos. Gerencie seus contatos com facilidade.</p>
     </div>
-    <div class="col-lg-2"></div>
+  </div>
+
+  <%- include('includes/messages') %>
+
+  <!-- Cards Informativos -->
+  <% const listaContatos = Array.isArray(contatos) ? contatos : []; %>
+  <div class="row mb-5">
+    <div class="col-md-3 mb-3">
+      <div class="card border-primary">
+        <div class="card-body">
+          <h5 class="card-title">Total de Contatos</h5>
+          <p class="card-text display-6"><%= listaContatos.length %></p>
+          <small class="text-muted">Contatos cadastrados</small>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <div class="card border-success">
+        <div class="card-body">
+          <h5 class="card-title">Novos Contatos</h5>
+          <p class="card-text display-6">0</p>
+          <small class="text-muted">Últimos 7 dias</small>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <div class="card border-info">
+        <div class="card-body">
+          <h5 class="card-title">Com Email</h5>
+          <p class="card-text display-6">1</p>
+          <small class="text-muted">Contatos com email</small>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <div class="card border-warning">
+        <div class="card-body">
+          <h5 class="card-title">Ações Rápidas</h5>
+          <a href="/contato/criar" class="btn btn-sm btn-primary">Novo Contato</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabela de Contatos -->
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header bg-dark text-white">
+          <h5 class="mb-0">Seus Contatos</h5>
+        </div>
+        <div class="card-body">
+          <div class="responsive-table">
+            <table class="table table-hover mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>Nome</th>
+                  <th>Sobrenome</th>
+                  <th>Telefone</th>
+                  <th>Email</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% listaContatos.forEach(contato => { %>
+                <tr>
+                  <td><%= contato.nome %></td>
+                  <td><%= contato.sobrenome %></td>
+                  <td><%= contato.telefone %></td>
+                  <td><%= contato.email %></td>
+                  <td>
+                    <a href="/contato/edit/<%= contato._id %>" class="btn btn-sm btn-info">Editar</a>
+                    <a href="/contato/deletar/<%= contato._id %>" class="btn btn-sm btn-danger">Deletar</a>
+                  </td>
+                </tr>
+                <% }) %>
+                <% if (listaContatos.length === 0) { %>
+                <tr>
+                  <td colspan="5" class="text-center text-muted">Nenhum contato cadastrado.</td>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <%- include('includes/footer') %>
+
