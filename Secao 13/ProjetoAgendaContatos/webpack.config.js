@@ -15,7 +15,11 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/env']
+                        sourceType: 'unambiguous',
+                        presets: [[
+                            '@babel/preset-env',
+                            { modules: 'commonjs' }
+                        ]]
                     }
                 }
             },
