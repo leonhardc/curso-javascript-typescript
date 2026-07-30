@@ -6,7 +6,7 @@ exports.index = async (req, res) => {
         return req.session.save(() => res.redirect('/login/index'));
     }
     const contato = new Contato(req.body);
-    const contatos = await contato.buscaContatos();
+    const contatos = await contato.buscaContatos(req.session.user);
 
     res.render('dashboardContato', { contatos });
 }
@@ -28,16 +28,16 @@ exports.register = async (req, res) => {
 
     try {
         const contato = new Contato(req.body);
-        await contato.register();
+        await contato.register(req.session.user);
 
         if (contato.errors.length > 0) {
             req.flash('errors', contato.errors);
-            req.session.save(() => res.redirect('/contato/novoContato'));
+            req.session.save(() => res.redirect('/contato/new'));
             return;
         }
 
         req.flash('success', 'Contato registrado com sucesso.');
-        req.session.save(() => res.redirect(`/contato/index/${contato.contato._id}`));
+        req.session.save(() => res.redirect(`/contato/index`));
     } catch (e) {
         console.log(e);
         res.render('404');

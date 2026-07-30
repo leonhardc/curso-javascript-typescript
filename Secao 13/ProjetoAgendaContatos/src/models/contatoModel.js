@@ -1,3 +1,4 @@
+const session = require('express-session');
 const mongoose = require('mongoose');
 const validator = require('validator');
 
@@ -19,9 +20,10 @@ class Contato {
         this.contato = null;
     }
 
-    async register() {
+    async register(user) {
         this.valida();
         if (this.errors.length > 0) return;
+        this.body.criadoPor = user._id;
         this.contato = await ContatoModel.create(this.body);
     }
 
@@ -32,8 +34,8 @@ class Contato {
         this.contato = await ContatoModel.findByIdAndUpdate(id, this.body, { new: true });
     }
 
-    async buscaContatos() {
-        const contatos = await ContatoModel.find()
+    async buscaContatos(user) {
+        const contatos = await ContatoModel.find({ criadoPor: user._id })
             .sort({ criadoEm: -1 });
         return contatos;
     }

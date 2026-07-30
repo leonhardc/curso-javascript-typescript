@@ -3,7 +3,7 @@ const Contato = require('../models/contatoModel')
 
 exports.index = async (req, res) => {
     if (req.session.user) {
-        const contatos = await new Contato(req.body).buscaContatos()
+        const contatos = await new Contato(req.body).buscaContatos(req.session.user)
         return res.render('dashboard', { contatos })
     }
     res.render('login')
