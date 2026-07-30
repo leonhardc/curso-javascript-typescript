@@ -7,6 +7,7 @@ const ContatoSchema = new mongoose.Schema({
     email: { type: String, required: false, default: '' },
     telefone: { type: String, required: false, default: '' },
     criadoEm: { type: Date, default: Date.now },
+    criadoPor: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 });
 
 const ContatoModel = mongoose.model('Contato', ContatoSchema);
