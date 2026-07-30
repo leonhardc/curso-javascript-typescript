@@ -81,7 +81,7 @@ exports.editContato = async (req, res) => {
         }
 
         req.flash('success', 'Contato editado com sucesso.');
-        req.session.save(() => res.redirect(`/contato/index/${contato.contato._id}`));
+        req.session.save(() => res.redirect(`/contato/edit/${contato.contato._id}`));
     } catch (e) {
         console.log(e);
         res.render('404');
@@ -104,7 +104,7 @@ exports.deletarContato = async (req, res) => {
         await contato.deleteOne();
 
         req.flash('success', 'Contato deletado com sucesso.');
-        req.session.save(() => res.redirect('/contato/index'));
+        req.session.save(() => res.redirect('/login/index'));
     } catch (e) {
         console.log(e);
         res.render('404');

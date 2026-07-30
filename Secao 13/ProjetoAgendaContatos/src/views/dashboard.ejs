@@ -44,7 +44,7 @@
       <div class="card border-warning">
         <div class="card-body">
           <h5 class="card-title">Ações Rápidas</h5>
-          <a href="/contato/criar" class="btn btn-sm btn-primary">Novo Contato</a>
+          <a href="/contato/new" class="btn btn-sm btn-primary">Novo Contato</a>
         </div>
       </div>
     </div>
@@ -78,7 +78,7 @@
                   <td><%= contato.email %></td>
                   <td>
                     <a href="/contato/edit/<%= contato._id %>" class="btn btn-sm btn-info">Editar</a>
-                    <a href="/contato/deletar/<%= contato._id %>" class="btn btn-sm btn-danger">Deletar</a>
+                    <a href="/contato/delete/<%= contato._id %>" class="btn btn-sm btn-danger">Deletar</a>
                   </td>
                 </tr>
                 <% }) %>

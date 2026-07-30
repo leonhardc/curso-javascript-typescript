@@ -24,10 +24,10 @@ route.get('/login/logout', loginController.logout);
 
 // rotas de contatos
 route.get('/contato/index', contatoController.index);
-route.get('/contato/index/:id', contatoController.editIndex);
+route.get('/contato/edit/:id', contatoController.editIndex);
 route.post('/contato/edit/:id', contatoController.editContato);
-route.get('/contato/deletar/:id', loginRequired, contatoController.deletarContato);
-route.get('/contato/novoContato', loginRequired, contatoController.novoContato);
+route.get('/contato/delete/:id', loginRequired, contatoController.deletarContato);
+route.get('/contato/new', loginRequired, contatoController.novoContato);
 route.post('/contato/register', loginRequired, contatoController.register);
 
 module.exports = route;

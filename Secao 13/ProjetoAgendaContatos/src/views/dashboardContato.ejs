@@ -14,7 +14,7 @@
 				</div>
 				<div class="d-flex align-items-center gap-2">
 					<span class="badge text-bg-dark fs-6"><%= contatos.length %> contato(s)</span>
-					<a href="/contato/novoContato" class="btn btn-success btn-sm">Novo contato</a>
+					<a href="/contato/new" class="btn btn-success btn-sm">Novo contato</a>
 				</div>
 			</div>
 
@@ -26,12 +26,13 @@
 							<th scope="col">Sobrenome</th>
 							<th scope="col">Telefone</th>
 							<th scope="col">E-mail</th>
+							<th scope="col">Ações</th>
 						</tr>
 					</thead>
 					<tbody>
 						<% if (contatos.length === 0) { %>
 							<tr>
-								<td colspan="4" class="text-center py-4">Nenhum contato cadastrado ainda.</td>
+								<td colspan="5" class="text-center py-4">Nenhum contato cadastrado ainda.</td>
 							</tr>
 						<% } %>
 
@@ -41,6 +42,10 @@
 								<td><%= contato.sobrenome || '-' %></td>
 								<td><%= contato.telefone || '-' %></td>
 								<td><%= contato.email || '-' %></td>
+								<td>
+									<a href="/contato/edit/<%= contato._id %>" class="btn btn-sm btn-info">Editar</a>
+									<a href="/contato/delete/<%= contato._id %>" class="btn btn-sm btn-danger">Deletar</a>
+								</td>
 							</tr>
 						<% }); %>
 					</tbody>
